@@ -1,0 +1,31 @@
+import { data } from 'react-router';
+import { MainViewChat } from '~/components/chat/main-view';
+import type { Route } from './+types/_index';
+import { MessagingRequestBodySchema } from '~/lib/chat/request-types';
+
+export function meta(args: Route.MetaArgs) {
+  return [
+    { title: 'Online Products Selling App' },
+    {
+      name: 'description',
+      content: 'Coloca una descripción útil para las búsquedas de Google',
+    },
+  ];
+}
+
+export async function action(args: Route.ActionArgs) {
+  const formData = await args.request.json();
+
+  if (!formData) throw new Error("You didn't send a request body");
+
+  const requestBody = MessagingRequestBodySchema.parse(formData);
+
+
+
+}
+
+export default function CheckoutPage() {
+  return (
+    <MainViewChat />
+  );
+}
