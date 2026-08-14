@@ -6,10 +6,10 @@ import {
 import z from 'zod';
 import { Input } from '~/components/ui/input';
 import { cn } from '~/lib/utils';
+import type { FieldConfig } from '~/lib/various/form-retrieving/types';
 import { getHtmlFieldType } from '~/lib/various/form-retrieving/utils';
 import { GenericFieldError } from './ui/generic-field-error';
 import { GenericLabel } from './ui/generic-label';
-import type { FieldConfig } from '~/lib/various/form-retrieving/types';
 
 function generateZodSchema() {
   return z.string().min(2);

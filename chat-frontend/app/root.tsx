@@ -11,8 +11,11 @@ import { Toaster } from 'sonner';
 import type { Route } from './+types/root';
 import './app.css';
 import { GenericHeader } from './components/layout/header/main-view';
+import {
+  authSessionMiddleware,
+  validateTokenMiddleware,
+} from './lib/infrastructure/server/auth';
 import { globalContextMiddleware } from './lib/infrastructure/server/global-context';
-import { authSessionMiddleware, validateTokenMiddleware } from './lib/infrastructure/server/auth';
 
 export const links: Route.LinksFunction = () => [
   { rel: 'preconnect', href: 'https://fonts.googleapis.com' },

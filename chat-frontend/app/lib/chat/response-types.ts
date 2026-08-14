@@ -32,15 +32,12 @@ const ShoppingActionResultBaseSchema = z.object({
   type: MessagingResponseEnum,
 });
 
-export const MessageSavedResultSchema =
-  ShoppingActionResultBaseSchema.extend({
-    type: z.literal(MessagingResponseEnum.enum.MESSAGE_SAVED),
-    id: zod_uuid,
-    message: zod_string,
-  });
-export type MessageSavedResult = z.infer<
-  typeof MessageSavedResultSchema
->;
+export const MessageSavedResultSchema = ShoppingActionResultBaseSchema.extend({
+  type: z.literal(MessagingResponseEnum.enum.MESSAGE_SAVED),
+  id: zod_uuid,
+  message: zod_string,
+});
+export type MessageSavedResult = z.infer<typeof MessageSavedResultSchema>;
 
 export const MesaagingActionResultSchema = z.discriminatedUnion('type', [
   MessageSavedResultSchema,

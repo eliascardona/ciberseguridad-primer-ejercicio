@@ -1,9 +1,12 @@
-import { MessagingActionEnum, type MessagingRequestBody } from './request-types';
 import { apiClient } from '../infrastructure/api/client';
 import { saveMessage } from './api';
+import {
+  MessagingActionEnum,
+  type MessagingRequestBody,
+} from './request-types';
 
 export async function shoppingServerActionHandler(
-  requestBody: MessagingRequestBody,
+  requestBody: MessagingRequestBody
 ) {
   const intent = requestBody.intent;
 
@@ -11,12 +14,8 @@ export async function shoppingServerActionHandler(
 
   try {
     switch (intent) {
-
       case MessagingActionEnum.enum.REQUEST_MESSAGE_SAVING: {
-        const savedMessage = saveMessage(
-          requestBody.body,
-          apiClient
-        );
+        const savedMessage = saveMessage(requestBody.body, apiClient);
       }
 
       default:

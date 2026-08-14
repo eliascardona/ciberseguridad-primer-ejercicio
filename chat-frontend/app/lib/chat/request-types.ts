@@ -16,9 +16,7 @@ export type MessagingAction = z.infer<typeof MessagingActionEnum>;
 const SaveMessageCommandSchema = z.object({
   message: zod_string,
 });
-export type SaveMessageCommand = z.infer<
-  typeof SaveMessageCommandSchema
->;
+export type SaveMessageCommand = z.infer<typeof SaveMessageCommandSchema>;
 
 /*
   POLYMORPHIC REQUEST SCHEMA

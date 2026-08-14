@@ -5,7 +5,6 @@ import {
   useCheckoutEffects,
 } from '~/lib/shopping/hooks';
 import { checkoutReducer } from '~/lib/shopping/reducers/checkoutReducer';
-import { getProductIdFromPathname } from '~/lib/utils/utils';
 import type { action } from '~/routes/course.$productId.checkout';
 import { CheckoutViewHandler } from './stage-handler';
 
@@ -30,7 +29,7 @@ export function MainViewChat() {
     state,
     submit,
     {
-      userId: "",
+      userId: '',
       productId,
     },
     dispatch

@@ -1,14 +1,13 @@
-import { MessagingActionEnum, type MessageSavingRequestBody } from '~/lib/chat/request-types';
+import {
+  MessagingActionEnum,
+  type MessageSavingRequestBody,
+} from '~/lib/chat/request-types';
 
-export function formatDataIntoRequestMessageSaving(
-  data: {
-    message: string;
-  }
-) {
+export function formatDataIntoRequestMessageSaving(data: { message: string }) {
   const format: MessageSavingRequestBody = {
     intent: MessagingActionEnum.enum.REQUEST_MESSAGE_SAVING,
     body: {
-      message: data.message
+      message: data.message,
     },
   };
 
