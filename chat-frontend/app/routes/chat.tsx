@@ -1,7 +1,7 @@
-import { Link } from 'react-router';
+import { MainViewChat } from '~/components/chat/main-view';
 import { MessagingRequestBodySchema } from '~/lib/chat/request-types';
 import { chatServerActionHandler } from '~/lib/chat/server';
-import type { Route } from './+types/_index';
+import type { Route } from './+types/chat';
 
 export function meta(args: Route.MetaArgs) {
   return [
@@ -26,9 +26,5 @@ export async function action(args: Route.ActionArgs) {
 }
 
 export default function ChatRoute() {
-  return (
-    <Link to={'/chat'} className="text-primary pt-8 pl-8 text-xl underline">
-      Dirigase al chat
-    </Link>
-  );
+  return <MainViewChat />;
 }

@@ -1,48 +1,38 @@
-import { useEffect, useReducer } from 'react';
+import { useReducer } from 'react';
 import { useActionData, useSubmit } from 'react-router';
-import {
-  useCheckoutActionResolver,
-  useCheckoutEffects,
-} from '~/lib/shopping/hooks';
-import { checkoutReducer } from '~/lib/shopping/reducers/checkoutReducer';
-import type { action } from '~/routes/course.$productId.checkout';
-import { CheckoutViewHandler } from './stage-handler';
+import { useChatActionResolver, useChatEffects } from '~/lib/chat/hooks';
+import { chatReducer } from '~/lib/chat/stateMachineReducer';
+import type { action } from '~/routes/_index';
+import { ChatViewHandler } from './stage-handler';
 
 export function MainViewChat() {
   const actionData = useActionData<typeof action>();
   const submit = useSubmit();
 
-  /* Authoritative state machine */
-  const [state, dispatch] = useReducer(checkoutReducer, {
+  const [state, dispatch] = useReducer(chatReducer, {
     phase: 'INIT',
+    messages: [],
     execution: {
-      checkoutSessionCommandIssued: false,
-      orderCommandIssued: false,
+      messageCreationCommandIssued: false,
+      messageVerificationCommandIssued: false,
     },
   });
 
-  /* Action resolver */
-  useCheckoutActionResolver(actionData, dispatch);
+  /*
+   * actionData → domain event
+   */
+  useChatActionResolver(actionData, dispatch);
 
-  /* Effect executor (only when state is authorized and commands are ready) */
-  useCheckoutEffects(
-    state,
-    submit,
-    {
-      userId: '',
-      productId,
-    },
-    dispatch
+  /*
+   * state → commands
+   */
+  useChatEffects(state, submit, dispatch);
+
+  return (
+    <>
+      <h1 className="pt-8 pl-8 text-3xl">Bienvenido al chat</h1>
+      <div className="h-12"></div>
+      <ChatViewHandler state={state} dispatch={dispatch} />
+    </>
   );
-
-  /* Bootstrap initial side effect */
-  useEffect(() => {
-    if (state.phase === 'INIT') {
-      dispatch({
-        type: 'START',
-      });
-    }
-  }, [state.phase]);
-
-  return <CheckoutViewHandler state={state} />;
 }

@@ -13,6 +13,15 @@ public class ChatDto {
     @AllArgsConstructor
     @NoArgsConstructor
     public static class SavedMessageResponse {
-        private String message;
+        private String messageContent;
+    }
+
+    @Data
+    @Builder
+    @AllArgsConstructor
+    @NoArgsConstructor
+    public static class VerifiedMessageResponse {
+        private UUID chatMessageId;
+        private String messageContent;
     }
 }

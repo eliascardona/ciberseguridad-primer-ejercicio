@@ -3,14 +3,17 @@ import {
   type BaseUseFormSubmitOptions,
   type SubmitFunctionAbstraction,
 } from '../utils';
-import { formatDataIntoRequestMessageSaving } from './payload-formatters';
+import {
+  formatDataIntoSaveMessageRequest,
+  formatDataIntoVerifyMessageRequest,
+} from './payload-formatters';
 
 function generateSubmitOptionsForMessaging(
   submit: SubmitFunctionAbstraction['useSubmit']
 ) {
   const OPTIONS: BaseUseFormSubmitOptions = {
     method: 'POST' as const,
-    action: `/` as const,
+    action: `/chat` as const,
     contentType: 'application/json' as const,
     submit,
   };
@@ -18,14 +21,26 @@ function generateSubmitOptionsForMessaging(
   return OPTIONS;
 }
 
-export function triggerCheckoutSessionCreation(
+export function triggerSaveMessage(
   data: { message: string },
   submit: SubmitFunctionAbstraction['useSubmit']
 ) {
   const options = generateSubmitOptionsForMessaging(submit);
 
   const { submitForm } = useSubmitFromReactRouter(options);
-  const formattedData = formatDataIntoRequestMessageSaving(data);
+  const formattedData = formatDataIntoSaveMessageRequest(data);
+
+  submitForm(formattedData);
+}
+
+export function triggerMessageVerification(
+  data: { chatMessageId: string },
+  submit: SubmitFunctionAbstraction['useSubmit']
+) {
+  const options = generateSubmitOptionsForMessaging(submit);
+
+  const { submitForm } = useSubmitFromReactRouter(options);
+  const formattedData = formatDataIntoVerifyMessageRequest(data);
 
   submitForm(formattedData);
 }

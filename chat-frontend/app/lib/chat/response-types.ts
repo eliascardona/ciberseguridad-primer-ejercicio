@@ -5,7 +5,6 @@ import { zod_string, zod_uuid } from '../shared/types';
   API RESPONSES
 */
 
-/* Message saved Response DTO schema */
 export const SavedMessageResponseDtoSchema = z.object({
   id: zod_uuid,
   message: zod_string,
@@ -14,14 +13,24 @@ export type SavedMessageResponseDto = z.infer<
   typeof SavedMessageResponseDtoSchema
 >;
 
+export const VerifiedMessageResponseDtoSchema = z.object({
+  id: zod_uuid,
+  message: zod_string,
+});
+export type VerifiedMessageResponseDto = z.infer<
+  typeof VerifiedMessageResponseDtoSchema
+>;
+
 /*
   SCHEMAS AND TYPES FOR ACTIONS
 */
-export const MessagingResponseEnum = z.enum([
+export const MessagingActionResponseEnum = z.enum([
   'MESSAGE_SAVED',
-  'MESSAGE_VALIDATED',
+  'MESSAGE_VERIFIED',
 ]);
-export type MessagingResponse = z.infer<typeof MessagingResponseEnum>;
+export type MessagingActionResponse = z.infer<
+  typeof MessagingActionResponseEnum
+>;
 
 /*
   POLYMORPHIC SERVER ACTION'S RESULT TYPE
@@ -29,11 +38,11 @@ export type MessagingResponse = z.infer<typeof MessagingResponseEnum>;
 */
 
 const ShoppingActionResultBaseSchema = z.object({
-  type: MessagingResponseEnum,
+  type: MessagingActionResponseEnum,
 });
 
 export const MessageSavedResultSchema = ShoppingActionResultBaseSchema.extend({
-  type: z.literal(MessagingResponseEnum.enum.MESSAGE_SAVED),
+  type: z.literal(MessagingActionResponseEnum.enum.MESSAGE_SAVED),
   id: zod_uuid,
   message: zod_string,
 });

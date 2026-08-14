@@ -19,13 +19,7 @@ public class ChatMessage {
     private UUID id;
 
     @Column(nullable = false)
-    private String sender;
-
-    @Column(nullable = false)
-    private String recipient;
-
-    // The message content as such
-    private String message;
+    private String messageContent;
 
     @ColumnDefault("now()")
     @Column(name = "sent_at", nullable = false)

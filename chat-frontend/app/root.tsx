@@ -1,4 +1,3 @@
-import type { MiddlewareFunction } from 'react-router';
 import {
   isRouteErrorResponse,
   Links,
@@ -11,11 +10,6 @@ import { Toaster } from 'sonner';
 import type { Route } from './+types/root';
 import './app.css';
 import { GenericHeader } from './components/layout/header/main-view';
-import {
-  authSessionMiddleware,
-  validateTokenMiddleware,
-} from './lib/infrastructure/server/auth';
-import { globalContextMiddleware } from './lib/infrastructure/server/global-context';
 
 export const links: Route.LinksFunction = () => [
   { rel: 'preconnect', href: 'https://fonts.googleapis.com' },
@@ -86,9 +80,3 @@ export function ErrorBoundary({ error }: Route.ErrorBoundaryProps) {
     </main>
   );
 }
-
-export const middleware: MiddlewareFunction<Response>[] = [
-  authSessionMiddleware,
-  validateTokenMiddleware,
-  globalContextMiddleware,
-];

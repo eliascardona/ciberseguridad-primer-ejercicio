@@ -4,7 +4,10 @@ import com.eliascardona.chat_spring_boot.api.command.NewChatMessageCommand;
 import com.eliascardona.chat_spring_boot.api.dto.ChatDto;
 import com.eliascardona.chat_spring_boot.api.entity.ChatMessage;
 import com.eliascardona.chat_spring_boot.api.repository.ChatRepository;
+import jakarta.persistence.EntityNotFoundException;
 import org.springframework.stereotype.Service;
+
+import java.util.UUID;
 
 @Service
 public class ChatService {
@@ -20,13 +23,26 @@ public class ChatService {
         NewChatMessageCommand command
     ) {
         ChatMessage chatMessage = new ChatMessage();
-        chatMessage.setSender(command.sender());
-        chatMessage.setRecipient(command.recipient());
-        chatMessage.setMessage(command.message());
+        chatMessage.setMessageContent(command.message());
         ChatMessage newChatMessage = chatRepository.save(chatMessage);
 
         return ChatDto.SavedMessageResponse.builder()
-                .message(newChatMessage.getMessage())
+                .messageContent(newChatMessage.getMessageContent())
+                .build();
+    }
+
+    public ChatDto.VerifiedMessageResponse findChatMessageById(
+            UUID chatMessageId
+    ) {
+        ChatMessage verifiedChatMessage = chatRepository
+                .findById(chatMessageId)
+                .orElseThrow(
+                        () -> new EntityNotFoundException(
+                                "Message: " + chatMessageId + " was not found"));
+
+        return ChatDto.VerifiedMessageResponse.builder()
+                .chatMessageId(verifiedChatMessage.getId())
+                .messageContent(verifiedChatMessage.getMessageContent())
                 .build();
     }
 }
