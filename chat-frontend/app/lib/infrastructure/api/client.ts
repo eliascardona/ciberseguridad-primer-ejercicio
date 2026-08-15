@@ -15,11 +15,12 @@ export type ApiError = {
 type AuthTokenProvider = () => Promise<string | null>;
 
 let API_BASE_URL = 'http://localhost:8082/api/';
+let COMPOSE_BASE_URL = 'http://backend:8082/api/';
 
 if (typeof window !== 'undefined') {
   API_BASE_URL = import.meta.env.VITE_API_URL ?? API_BASE_URL;
 } else {
-  API_BASE_URL = process.env.VITE_API_URL ?? API_BASE_URL;
+  API_BASE_URL = process.env.SERVER_API_URL ?? COMPOSE_BASE_URL;
 }
 
 // Improved parameter handling types

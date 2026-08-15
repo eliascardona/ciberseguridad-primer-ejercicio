@@ -1,5 +1,5 @@
 server:
-  port: ${PORT:8080}
+  port: ${BACKEND_PORT:8082}
 
 spring:
   application:
@@ -14,7 +14,7 @@ spring:
 
     hikari:
       # Connection Pool Configuration
-      pool-name: RegulatedOpSellingPool
+      pool-name: HikariPoolSpringBootChat
       maximum-pool-size: 20
 
   jpa:
