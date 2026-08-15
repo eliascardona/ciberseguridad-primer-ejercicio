@@ -14,6 +14,7 @@ export async function saveMessage(
       `/chat/save-message`,
       command
     );
+    console.log('[API] - Save initial message:', response);
 
     return response;
   } catch (error) {
@@ -32,6 +33,7 @@ export async function verifyMessage(
       {},
       { chatMessageId: command.chatMessageId }
     );
+    console.log('[API] - Verify message:', response);
 
     return response;
   } catch (error) {

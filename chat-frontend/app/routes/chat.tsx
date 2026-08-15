@@ -5,7 +5,7 @@ import type { Route } from './+types/chat';
 
 export function meta(args: Route.MetaArgs) {
   return [
-    { title: 'Online Products Selling App' },
+    { title: 'The happy chat App' },
     {
       name: 'description',
       content: 'Coloca una descripción útil para las búsquedas de Google',

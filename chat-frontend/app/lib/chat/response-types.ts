@@ -4,18 +4,17 @@ import { zod_string, zod_uuid } from '../shared/types';
 /*
   API RESPONSES
 */
-
 export const SavedMessageResponseDtoSchema = z.object({
-  id: zod_uuid,
-  message: zod_string,
+  chatMessageId: zod_uuid,
+  messageContent: zod_string,
 });
 export type SavedMessageResponseDto = z.infer<
   typeof SavedMessageResponseDtoSchema
 >;
 
 export const VerifiedMessageResponseDtoSchema = z.object({
-  id: zod_uuid,
-  message: zod_string,
+  chatMessageId: zod_uuid,
+  messageContent: zod_string,
 });
 export type VerifiedMessageResponseDto = z.infer<
   typeof VerifiedMessageResponseDtoSchema

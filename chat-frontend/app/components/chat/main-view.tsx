@@ -1,38 +1,46 @@
-import { useReducer } from 'react';
-import { useActionData, useSubmit } from 'react-router';
-import { useChatActionResolver, useChatEffects } from '~/lib/chat/hooks';
-import { chatReducer } from '~/lib/chat/stateMachineReducer';
-import type { action } from '~/routes/_index';
-import { ChatViewHandler } from './stage-handler';
+import { useState } from 'react';
+import type { AvailableUsername } from '~/lib/shared/types';
+import { cn } from '~/lib/utils';
+import { ChatController } from './chat-controller';
 
 export function MainViewChat() {
-  const actionData = useActionData<typeof action>();
-  const submit = useSubmit();
-
-  const [state, dispatch] = useReducer(chatReducer, {
-    phase: 'INIT',
-    messages: [],
-    execution: {
-      messageCreationCommandIssued: false,
-      messageVerificationCommandIssued: false,
-    },
-  });
-
-  /*
-   * actionData → domain event
-   */
-  useChatActionResolver(actionData, dispatch);
-
-  /*
-   * state → commands
-   */
-  useChatEffects(state, submit, dispatch);
+  const [username, setUsername] = useState<AvailableUsername | null>(null);
 
   return (
-    <>
-      <h1 className="pt-8 pl-8 text-3xl">Bienvenido al chat</h1>
-      <div className="h-12"></div>
-      <ChatViewHandler state={state} dispatch={dispatch} />
-    </>
+    <div className="space-y-8 pt-8">
+      <h1 className="text-3xl">Bienvenido al chat</h1>
+
+      <div className="mx-auto grid w-1/2 grid-cols-2 gap-2">
+        <div
+          className={cn(
+            'cursor-pointer rounded-md border p-4 text-center',
+            username != null && username === 'Fulanito'
+              ? 'border-sky-100 bg-sky-50'
+              : ''
+          )}
+          onClick={() => setUsername('Fulanito')}>
+          Fulanito
+        </div>
+
+        <div
+          className={cn(
+            'cursor-pointer rounded-md border p-4 text-center',
+            username != null && username === 'Fulanita'
+              ? 'border-sky-100 bg-sky-50'
+              : ''
+          )}
+          onClick={() => setUsername('Fulanita')}>
+          Fulanita
+        </div>
+      </div>
+
+      {username && (
+        <>
+          <h2 className="text-xl">Ingresarás al chat como {username}</h2>
+
+          <ChatController username={username} />
+        </>
+      )}
+    </div>
   );
 }

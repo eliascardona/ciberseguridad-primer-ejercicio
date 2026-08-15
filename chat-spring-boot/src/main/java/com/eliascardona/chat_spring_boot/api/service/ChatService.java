@@ -27,6 +27,7 @@ public class ChatService {
         ChatMessage newChatMessage = chatRepository.save(chatMessage);
 
         return ChatDto.SavedMessageResponse.builder()
+                .chatMessageId(newChatMessage.getId())
                 .messageContent(newChatMessage.getMessageContent())
                 .build();
     }
