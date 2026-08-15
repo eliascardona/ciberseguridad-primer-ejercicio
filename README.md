@@ -33,14 +33,15 @@ and
 docker compose up
 ```
 
-4. If any contributor updates the repository, please run:
+4. Either if any contributor updates the repository or you change your local code, please run:
 
 
 ```
-docker compose up
+docker compose up --build
 ```
-
 once you are inside the project's folder.
+
+* From now on, when changes are applied to the codebase, it will be needed to add the `--build` flag to the `docker compose up` command.
 
 
 
