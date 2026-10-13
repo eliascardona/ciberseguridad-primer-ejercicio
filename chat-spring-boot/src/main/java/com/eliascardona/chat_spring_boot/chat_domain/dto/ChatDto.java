@@ -1,4 +1,4 @@
-package com.eliascardona.chat_spring_boot.api.dto;
+package com.eliascardona.chat_spring_boot.chat_domain.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

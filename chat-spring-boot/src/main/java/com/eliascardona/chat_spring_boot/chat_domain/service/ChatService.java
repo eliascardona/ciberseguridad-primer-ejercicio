@@ -1,9 +1,9 @@
-package com.eliascardona.chat_spring_boot.api.service;
+package com.eliascardona.chat_spring_boot.chat_domain.service;
 
-import com.eliascardona.chat_spring_boot.api.command.NewChatMessageCommand;
-import com.eliascardona.chat_spring_boot.api.dto.ChatDto;
-import com.eliascardona.chat_spring_boot.api.entity.ChatMessage;
-import com.eliascardona.chat_spring_boot.api.repository.ChatRepository;
+import com.eliascardona.chat_spring_boot.chat_domain.command.NewChatMessageCommand;
+import com.eliascardona.chat_spring_boot.chat_domain.dto.ChatDto;
+import com.eliascardona.chat_spring_boot.chat_domain.entity.ChatMessage;
+import com.eliascardona.chat_spring_boot.chat_domain.repository.ChatRepository;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.stereotype.Service;
 

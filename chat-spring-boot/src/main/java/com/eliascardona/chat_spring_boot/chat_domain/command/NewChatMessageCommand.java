@@ -1,4 +1,4 @@
-package com.eliascardona.chat_spring_boot.api.command;
+package com.eliascardona.chat_spring_boot.chat_domain.command;
 
 public record NewChatMessageCommand (
     String sender,

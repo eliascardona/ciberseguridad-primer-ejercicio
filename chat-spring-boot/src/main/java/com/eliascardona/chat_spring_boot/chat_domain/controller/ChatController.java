@@ -1,8 +1,8 @@
-package com.eliascardona.chat_spring_boot.api.controller;
+package com.eliascardona.chat_spring_boot.chat_domain.controller;
 
-import com.eliascardona.chat_spring_boot.api.command.NewChatMessageCommand;
-import com.eliascardona.chat_spring_boot.api.dto.ChatDto;
-import com.eliascardona.chat_spring_boot.api.service.ChatService;
+import com.eliascardona.chat_spring_boot.chat_domain.command.NewChatMessageCommand;
+import com.eliascardona.chat_spring_boot.chat_domain.dto.ChatDto;
+import com.eliascardona.chat_spring_boot.chat_domain.service.ChatService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
@@ -36,7 +36,7 @@ public class ChatController {
     }
 
     @GetMapping("/verify-message")
-    public ResponseEntity<?> saveMessage(
+    public ResponseEntity<?> getMessage(
             @Validated @RequestParam String chatMessageId
     ) {
         try {

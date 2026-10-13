@@ -3,17 +3,13 @@ services:
   postgres:
     image: postgres:17.5
     container_name: chat-postgres
-
     restart: unless-stopped
-
     environment:
       POSTGRES_DB: ${POSTGRES_DB}
       POSTGRES_USER: ${POSTGRES_USER}
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
-
     volumes:
       - postgres_data:/var/lib/postgresql/data
-
     healthcheck:
       test:
         [
@@ -24,16 +20,12 @@ services:
       timeout: 5s
       retries: 10
 
-
   backend:
     build:
       context: ./chat-spring-boot
       dockerfile: Dockerfile
-
     container_name: chat-backend
-
     restart: unless-stopped
-
     environment:
       BACKEND_PORT: ${BACKEND_PORT}
 
@@ -53,20 +45,15 @@ services:
       postgres:
         condition: service_healthy
 
-
   frontend:
     build:
       context: ./chat-frontend
       dockerfile: Dockerfile
-
     container_name: chat-frontend
-
     restart: unless-stopped
-
     environment:
       SERVER_API_URL: ${SERVER_API_URL}
       VITE_API_URL: ${VITE_API_URL}
- 
 
     ports:
       - "3000:3000"

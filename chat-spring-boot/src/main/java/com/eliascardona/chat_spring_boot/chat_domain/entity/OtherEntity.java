@@ -1,4 +1,4 @@
-package com.eliascardona.chat_spring_boot.api.entity;
+package com.eliascardona.chat_spring_boot.chat_domain.entity;
 
 import jakarta.persistence.*;
 import lombok.Getter;
@@ -11,15 +11,17 @@ import java.util.UUID;
 @Getter
 @Setter
 @Entity
-@Table(name = "chat_message")
-public class ChatMessage {
+@Table(name = "other_entity")
+public class OtherEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     @Column(nullable = false)
     private UUID id;
 
     @Column(nullable = false)
-    private String messageContent;
+    private String name;
+
+    private String description;
 
     @ColumnDefault("now()")
     @Column(name = "sent_at", nullable = false)
