@@ -1,3 +1,75 @@
+# Guía breve de instalación y uso
+
+## Explicación del ejemplo
+
+Consta de un ejemplo muy sencillo elaborado con Spring Boot como backend y con React Router como frontend.
+
+En el backend deberás crear un archivo `.env` con valores como los siguientes
+```
+PORT=8082
+
+# Required
+DATASOURCE_URL=jdbc:postgresql://localhost:5432/escuela
+DATASOURCE_USERNAME=pg_username
+DATASOURCE_PASSWORD=pg_pass
+DATASOURCE_SCHEMA=public
+
+# Optional (with defaults)
+DATASOURCE_DRIVER_CLASS_NAME=org.postgresql.Driver
+HIBERNATE_DDL_AUTO=update
+```
+
+El `DATASOURCE_URL` se compone de la siguiente forma:
+```
+<PROTOCOLO_CONEXION>://<HOST>:<PUERTO>/<NOMBRE_DE_BD>
+```
+
+En nuestro caso, se deja con jdbc y postgresql como Protocolo de conexión, localhost, puerto 5432 o el configurado en la instalación de Postgresql y el nombre de la B.D. en el ejemplo es `escuela`, pero esa B.D. se debe crear previamente. Por eso la variable **DATASOURCE_URL** tiene el siguiente valor:
+
+```
+jdbc:postgresql://localhost:5435/escuela
+```
+### Cómo crear la BD
+
+Abre una terminal PowerShell, CMD o la que tenga tu sistema operativo, luego ejecuta:
+
+```
+psql -U postgres
+```
+Debería solicitar una contraseña. Debes ingresar la contraseña que le asignaste al super usuario al momento de INSTALAR POSTGRES.
+
+Dentro de `psql` que es una línea de comandos de Postgres que establece una conexión con la BD, debes crear un ROL alternativo para ingresar a la BD.
+Para fines prácticos, le daremos privilegios de SUPER USUARIO. Es una mala práctica que aplicaciones web se conecten a una Base de Datos con este nivel de privilegio, pero para el ejemplo es lo que haremos.
+
+```
+CREATE ROLE nombre_de_usuario WITH LOGIN SUPERUSER PASSWORD 'password';
+```
+
+Crea la base de datos con el nombre que quieras
+
+```
+CREATE DATABASE nombre_de_bd OWNER nombre_de_usuario;
+```
+
+Dale el privilegio de conexión al usuario que creaste
+
+```
+GRANT CONNECT ON DATABASE nombre_de_bd TO nombre_de_usuario;
+```
+
+
+### Cómo cargar las variables de entorno
+
+Dentro del backend (en la raíz de la carpeta) se encuentra un script de python: `load_env.py`. Si se ejecuta en PowerShell exportará las variables de entorno a la sesión de terminal actual.
+
+powershell```
+python .\load_env.py | Invoke-Expression
+```
+
+- **Recuerda que debes estar dentro de la carpeta del backend**
+
+
+
 # Preparación del entorno de desarrollo en Windows
 
 ## Objetivo
