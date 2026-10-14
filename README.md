@@ -34,7 +34,7 @@ jdbc:postgresql://localhost:5432/escuela
 Abre una terminal PowerShell, CMD o la que tenga tu sistema operativo, luego ejecuta:
 
 ```
-psql -U postgres
+psql -U postgres -p <SUSTITUIR_PUERTO_CONFIGURADO_EN_INSTALACION>
 ```
 Debería solicitar una contraseña. Debes ingresar la contraseña que le asignaste al super usuario al momento de INSTALAR POSTGRES.
 
@@ -59,7 +59,7 @@ GRANT CONNECT ON DATABASE nombre_de_bd TO nombre_de_usuario_pg;
 
 Si copiaste y pegaste tal cual los comandos de arriba, entonces tus variables de entorno de conexión a la BD deberían lucir así:
 ```
-DATASOURCE_URL=jdbc:postgresql://localhost:<PUERTO_CONFIG_EN_INSTALACION>/nombre_de_bd
+DATASOURCE_URL=jdbc:postgresql://localhost:<PUERTO_CONFIGURADO_EN_INSTALACION>/nombre_de_bd
 DATASOURCE_USERNAME=nombre_de_usuario_pg
 DATASOURCE_PASSWORD=password_pg
 ```
