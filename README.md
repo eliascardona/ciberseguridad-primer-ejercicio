@@ -27,7 +27,7 @@ El `DATASOURCE_URL` se compone de la siguiente forma:
 En nuestro caso, se deja con jdbc y postgresql como Protocolo de conexión, localhost, puerto 5432 o el configurado en la instalación de Postgresql y el nombre de la B.D. en el ejemplo es `escuela`, pero esa B.D. se debe crear previamente. Por eso la variable **DATASOURCE_URL** tiene el siguiente valor:
 
 ```
-jdbc:postgresql://localhost:5435/escuela
+jdbc:postgresql://localhost:5432/escuela
 ```
 ### Cómo crear la BD
 
@@ -42,19 +42,26 @@ Dentro de `psql` que es una línea de comandos de Postgres que establece una con
 Para fines prácticos, le daremos privilegios de SUPER USUARIO. Es una mala práctica que aplicaciones web se conecten a una Base de Datos con este nivel de privilegio, pero para el ejemplo es lo que haremos.
 
 ```
-CREATE ROLE nombre_de_usuario WITH LOGIN SUPERUSER PASSWORD 'password';
+CREATE ROLE nombre_de_usuario_pg WITH LOGIN SUPERUSER PASSWORD 'password_pg';
 ```
 
 Crea la base de datos con el nombre que quieras
 
 ```
-CREATE DATABASE nombre_de_bd OWNER nombre_de_usuario;
+CREATE DATABASE nombre_de_bd OWNER nombre_de_usuario_pg;
 ```
 
 Dale el privilegio de conexión al usuario que creaste
 
 ```
-GRANT CONNECT ON DATABASE nombre_de_bd TO nombre_de_usuario;
+GRANT CONNECT ON DATABASE nombre_de_bd TO nombre_de_usuario_pg;
+```
+
+Si copiaste y pegaste tal cual los comandos de arriba, entonces tus variables de entorno de conexión a la BD deberían lucir así:
+```
+DATASOURCE_URL=jdbc:postgresql://localhost:<PUERTO_CONFIG_EN_INSTALACION>/nombre_de_bd
+DATASOURCE_USERNAME=nombre_de_usuario_pg
+DATASOURCE_PASSWORD=password_pg
 ```
 
 
