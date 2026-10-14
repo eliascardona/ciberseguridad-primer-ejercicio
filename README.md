@@ -105,6 +105,21 @@ En caso de que no sea posible instalar Node.js por los medios anteriores, dirigi
 
 Estará presente un texto que dice **Or get a prebuilt Node.js®** y a continuación te permite seleccionar el sistema operativo y la arquitectura del procesador de tu equipo.
 
+Descarga el instalador para tu sistema operativo y **lee con cuidado las indicaciones que contiene**
+
+**Selecciona las opciones del instalación de Node.js que mejor te convengan**
+
+Tras finalizar, abre una nueva terminal (o CMD) en tu equipo de cómputo y ejecuta el siguiente comando:
+```powershell
+node -v
+```
+
+Debe mostrarte la versión de Node.js que se instaló. Un ejemplo de salida sería el siguiente:
+```powershell
+v24.21.0
+```
+
+
 
 ### `uninstall-nvm-node24.ps1`
 
