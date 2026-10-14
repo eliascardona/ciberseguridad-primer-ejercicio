@@ -95,7 +95,7 @@ Para verificar que se instaló `nvm` correctamente.
 nvm install 24
 ```
 
-Para verificar que se instaló `Node.js` versión 24.
+Para instalar `Node.js` versión 24 utilizando Node Version Manager.
 
 ## Alternativa para Node.js
 
