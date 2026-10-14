@@ -28,6 +28,18 @@ Los scripts automatizan la configuración del entorno de desarrollo y permiten r
 
 > **Nota:** los nombres de archivo siguientes son nombres descriptivos de referencia. Si los archivos del repositorio tienen nombres diferentes, utiliza los nombres reales al ejecutar los comandos.
 
+### `install-scoop.ps1`
+
+Instala Scoop, un gestor de paquetes para Windows que facilita la instalación y actualización de herramientas de desarrollo.
+
+Este script instala exclusivamente Scoop; no instala Java, Maven ni Node.js.
+
+Ejecución:
+
+```powershell
+.\install-scoop.ps1
+```
+
 ### `install-java-maven.ps1`
 
 Instala las herramientas necesarias para desarrollar y ejecutar aplicaciones Java con Spring Boot:
@@ -51,18 +63,6 @@ Ejecución:
 
 ```powershell
 .\uninstall-java-maven.ps1
-```
-
-### `install-scoop.ps1`
-
-Instala Scoop, un gestor de paquetes para Windows que facilita la instalación y actualización de herramientas de desarrollo.
-
-Este script instala exclusivamente Scoop; no instala Java, Maven ni Node.js.
-
-Ejecución:
-
-```powershell
-.\install-scoop.ps1
 ```
 
 ### `install-nvm-node24.ps1`
