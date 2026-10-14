@@ -79,6 +79,33 @@ Ejecución:
 .\install-nvm-node24.ps1
 ```
 
+## NOTA: Tras realizar pruebas, el script anterior no funciona por completo
+
+Se ejecutó el script en más de una ocasión. Se instala `nvm` (Node Version Manager), pero no `Node.js`
+
+- Para instalar `Node.js 24` ejecuta los siguientes comandos:
+
+```powershell
+nvm version
+```
+
+Para verificar que se instaló `nvm` correctamente.
+
+```powershell
+nvm install 24
+```
+
+Para verificar que se instaló `Node.js` versión 24.
+
+## Alternativa para Node.js
+
+En caso de que no sea posible instalar Node.js por los medios anteriores, dirigirse a:
+
+- https://nodejs.org/en/download
+
+Estará presente un texto que dice **Or get a prebuilt Node.js®** y a continuación te permite seleccionar el sistema operativo y la arquitectura del procesador de tu equipo.
+
+
 ### `uninstall-nvm-node24.ps1`
 
 Revierte la instalación de NVM y Node.js. El procedimiento contempla:
