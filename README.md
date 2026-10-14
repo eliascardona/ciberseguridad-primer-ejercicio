@@ -62,7 +62,7 @@ GRANT CONNECT ON DATABASE nombre_de_bd TO nombre_de_usuario;
 
 Dentro del backend (en la raíz de la carpeta) se encuentra un script de python: `load_env.py`. Si se ejecuta en PowerShell exportará las variables de entorno a la sesión de terminal actual.
 
-powershell```
+```powershell
 python .\load_env.py | Invoke-Expression
 ```
 
